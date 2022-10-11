@@ -12,10 +12,10 @@ const app = express();
 app.use(cors())
 
 const pool =  mysql.createPool({
-  host: 'localhost',
+  host: 'mysql',
   user: 'root',
   password: '123456',
-  database: 'nest'
+  database: 'TEST_LOGIN'
 });
 
 app.use(bodyParser.json());
