@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS LOGIN_TEST;
+
+USE LOGIN_TEST;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+);S

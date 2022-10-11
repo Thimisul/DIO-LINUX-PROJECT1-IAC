@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+
+  apache:
+    image: httpd:latest
+    container_name: my-apache-login-test
+    ports:
+      - '80:80'
+    volumes:
+      - /website/frontend:/usr/local/apache2/htdocs
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSOWORD: "#123456"
+      MYSQL_DATABASE: LOGIN_TEST
+    ports:
+      - "3306:3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+      - /website/data/init.sql:/data/application/init.sql
+    networks:
+      - my-network
+  
+  node:
+    image: node:18-alpine
+    ports: 
+      - 3001:3001
+    volumes:
+      - /website/backend:/usr/local/backend
+    command: 
+      npm install -g express body-parser mysql2 
+      cd /usr/local/backend/ 
+      npm i
+    networks:
+      - my-network
+      
+  networks:
+    my-network:
+      driver: bridge
+
+  
+  
+  

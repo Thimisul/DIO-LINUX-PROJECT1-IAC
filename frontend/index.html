@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login Teste</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="login-wrapper">
+          <div>
+            <div style="display: flex; justify-content: center;">
+              <h1>Login</h1>
+            </div>
+            <div>
+              <form  class="form-wrapper" >
+      
+                <div>
+                  <div>
+                    <span> 
+                      <i style="width: auto"></i>
+                    </span> 
+                      <input class="form-input" id="txtUsuario" runat="server" type="text" name="username" placeholder="Usuário"/>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  
+                  <div class="input-group">
+                    <span> <i class="glyphicon glyphicon-lock" style="width: auto"></i>
+                    </span> <input  class="form-input" id="txtSenha" runat="server" type="password" class="form-control" name="password" placeholder="Senha" required="" />
+                  </div>
+
+                  <input class="button" type="submit" value="Entrar" onclick="Login(event)" />
+                </div>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script>
+       function cadastro(username, password) {
+        debugger
+        fetch("http://localhost:8000/cadastro",{
+            method: 'POST',
+            body: JSON.stringify({
+              username: username,
+              password: password
+            }),    
+            headers: {
+              "Content-type": "application/json"
+            }
+          }).then(response => {
+            if(response.ok){
+              alert('Tente novamente, Cadastro realizado!')
+            }else{
+              alert('Não cadastrado')
+            }
+          })
+        }
+      
+
+        function Login(e) {
+          e.preventDefault();
+          debugger
+            var done = 0;
+            var username = document.getElementsByName('username')[0].value;
+            username = username.toLowerCase();
+            var password = document.getElementsByName('password')[0].value;
+            password = password.toLowerCase();
+
+          fetch("http://localhost:8000/login",{
+            method: 'POST',
+            body: JSON.stringify({
+              username: username,
+              password: password
+            }),    
+            headers: {
+              "Content-type": "application/json"
+            }
+          }).then(response => {
+            if(response.ok){
+              alert('Login funcionando corretamente')
+            }else{
+              alert('Usuário ou senha incorretos!')
+              cadastro(username, password)
+            }
+          })
+        }
+    </script>
+</body>
+</html>
