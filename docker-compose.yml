@@ -3,9 +3,10 @@ services:
 
   apache:
     image: httpd:latest
-    container_name: my-apache-login-test
+    container_name: apache
     ports:
       - '80:80'
+    hostname: apache.local
     volumes:
       - /website/frontend:/usr/local/apache2/htdocs
     networks:
@@ -13,34 +14,31 @@ services:
 
   mysql:
     image: mysql:5.7
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSOWORD: "#123456"
-      MYSQL_DATABASE: LOGIN_TEST
+      MYSQL_ROOT_PASSWORD: "123456"
     ports:
       - "3306:3306"
+    hostname: mysql.local
     command: --init-file /data/application/init.sql
     volumes:
       - /website/data/init.sql:/data/application/init.sql
     networks:
       - my-network
-  
+
   node:
     image: node:18-alpine
-    ports: 
-      - 3001:3001
+    container_name: node
+    ports:
+      - '80:8000'
+    hostname: node.local
     volumes:
       - /website/backend:/usr/local/backend
-    command: 
-      npm install -g express body-parser mysql2 
-      cd /usr/local/backend/ 
-      npm i
+    command: sh -c "cd /usr/local/backend/ && npm i && npm run start"
     networks:
       - my-network
-      
-  networks:
-    my-network:
-      driver: bridge
 
-  
-  
-  
+networks:
+  my-network:
+    driver: bridge
+
