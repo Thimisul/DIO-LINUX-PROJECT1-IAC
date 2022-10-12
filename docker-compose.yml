@@ -30,7 +30,7 @@ services:
     image: node:18-alpine
     container_name: node
     ports:
-      - '80:8000'
+      - '8000:8000'
     hostname: node.local
     volumes:
       - /website/backend:/usr/local/backend
