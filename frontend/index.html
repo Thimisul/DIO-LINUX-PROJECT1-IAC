@@ -48,7 +48,7 @@
     <script>
        function cadastro(username, password) {
         debugger
-        fetch("http://node/cadastro",{
+        fetch("http://node:8000/cadastro",{
             method: 'POST',
             body: JSON.stringify({
               username: username,
@@ -69,14 +69,13 @@
 
         function Login(e) {
           e.preventDefault();
-          debugger
             var done = 0;
             var username = document.getElementsByName('username')[0].value;
             username = username.toLowerCase();
             var password = document.getElementsByName('password')[0].value;
             password = password.toLowerCase();
 
-          fetch("http://node/login",{
+          fetch("http://node:8000/login",{
             method: 'POST',
             body: JSON.stringify({
               username: username,
