@@ -48,7 +48,7 @@
     <script>
        function cadastro(username, password) {
         debugger
-        fetch(`${location.href.slice()}:8000/cadastro`,{
+        fetch(`${location.href.slice(0,-1)}:8000/cadastro`,{
             method: 'POST',
             body: JSON.stringify({
               username: username,
@@ -75,7 +75,7 @@
             var password = document.getElementsByName('password')[0].value;
             password = password.toLowerCase();
 
-            fetch(`${location.href}:8000/login`,{
+            fetch(`${location.href.slice(0,-1)}:8000/login`,{
             method: 'POST',
             body: JSON.stringify({
               username: username,
