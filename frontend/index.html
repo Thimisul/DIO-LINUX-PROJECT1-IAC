@@ -58,7 +58,7 @@
               "Content-type": "application/json"
             }
           }).then(response => {
-            if(response.ok){
+            if(response.status == 402){
               alert('Tente novamente, Cadastro realizado!')
             }else{
               alert('Não cadastrado')
@@ -85,7 +85,7 @@
               "Content-type": "application/json"
             }
           }).then(response => {
-            if(response.ok){
+            if(response == 204){
               alert('Login funcionando corretamente')
             }else{
               alert('Usuário ou senha incorretos!')
