@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+
+  apache:
+    image: httpd:latest
+    container_name: apache
+    ports:
+      - '80:80'
+    hostname: apache.local
+    volumes:
+      - /website/frontend:/usr/local/apache2/htdocs
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    ports:
+      - "3306:3306"
+    hostname: mysql.local
+    command: --init-file /data/application/init.sql
+    volumes:
+      - /website/data/init.sql:/data/application/init.sql
+    networks:
+      - my-network
+
+  node:
+    image: node:18-alpine
+    container_name: node
+    ports:
+      - '8000:8000'
+    hostname: node.local
+    volumes:
+      - /website/backend:/usr/local/backend
+    command: sh -c "cd /usr/local/backend/ && npm i && npm run start"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
