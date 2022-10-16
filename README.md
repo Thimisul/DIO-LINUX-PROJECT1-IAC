@@ -25,3 +25,5 @@ Assim criando um aplicativo com Backend, frontend e armazenagem de dados.
 O Foco desse projeto é apenas testar as conexões entre os servidores.
 
 Testes realizados em uma instância ec2 com sistema operacional linux Ubuntu da AWS.
+
+Na intância ec2 foi configurado um grupo de segurança onde contem regras de entrada para a porta TCP 8000 e 80.
