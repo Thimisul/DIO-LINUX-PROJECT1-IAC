@@ -17,7 +17,7 @@
               <h1>Login</h1>
             </div>
             <div>
-              <form  class="form-wrapper" >
+              <form  class="form-wrapper" method="post">
       
                 <div>
                   <div>
@@ -58,7 +58,7 @@
               "Content-type": "application/json"
             }
           }).then(response => {
-            if(response.ok){
+            if(response.status == 201){
               alert('Tente novamente, Cadastro realizado!')
             }else{
               alert('Não cadastrado')
@@ -85,7 +85,7 @@
               "Content-type": "application/json"
             }
           }).then(response => {
-            if(response.ok){
+            if(response.status == 200){
               alert('Login funcionando corretamente')
             }else{
               alert('Usuário ou senha incorretos!')
