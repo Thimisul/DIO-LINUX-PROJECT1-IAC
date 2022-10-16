@@ -30,11 +30,13 @@ app.post("/cadastro", function (req, res) {
     ])
     .then(() => {
       res
-        .send(JSON.stringify({ username: username, password: password }));
+        .status(201)
+        .send(JSON.stringify({ messgae: "Cadastro realizado com sucesso, Faça o login novamente" }));
     })
     .catch(() => {
       res
-        .send(JSON.stringify({ username: username, password: password }));
+        .status(500)
+        .send(JSON.stringify({ error: "Cadastro não realizado" }));
     });
 });
 
@@ -49,13 +51,13 @@ app.post("/login", async function (req, res) {
     ]);
   console.log(rows);
   if (rows.toString().length > 0) {
-    console.log("Ok")
     res
-      .send(JSON.stringify({ username: username, password: password }));
+      .status(200)
+      .send(JSON.stringify({ message: "Login realizado com sucesso"}));
   } else {
-    console.log('Erro')
     res
-      .send(JSON.stringify({ username: username, password: password }));
+      .status(404)
+      .send(JSON.stringify({ error: "Login não encontrado, realizando o cadastro!" }));
   }
 });
 
