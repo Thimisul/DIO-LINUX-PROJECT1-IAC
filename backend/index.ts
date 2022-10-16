@@ -49,9 +49,11 @@ app.post("/login", async function (req, res) {
     ]);
   console.log(rows);
   if (rows.toString().length > 0) {
+    console.log("Ok")
     res
       .send(JSON.stringify({ username: username, password: password }));
   } else {
+    console.log('Erro')
     res
       .send(JSON.stringify({ username: username, password: password }));
   }
