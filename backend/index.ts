@@ -30,12 +30,10 @@ app.post("/cadastro", function (req, res) {
     ])
     .then(() => {
       res
-        .status(201)
         .send(JSON.stringify({ username: username, password: password }));
     })
     .catch(() => {
       res
-        .status(500)
         .send(JSON.stringify({ username: username, password: password }));
     });
 });
@@ -52,11 +50,9 @@ app.post("/login", async function (req, res) {
   console.log(rows);
   if (rows.toString().length > 0) {
     res
-      .status(200)
       .send(JSON.stringify({ username: username, password: password }));
   } else {
     res
-      .status(404)
       .send(JSON.stringify({ username: username, password: password }));
   }
 });
