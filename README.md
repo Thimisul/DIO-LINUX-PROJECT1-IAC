@@ -10,7 +10,7 @@
          cd website
    * Executar o bash.sh
 
-         ./bash.ssh
+         ./bash.sh
   
 ### Para que server:
 
